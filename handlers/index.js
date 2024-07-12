@@ -33,7 +33,7 @@ export const getSerpApi = async (req, res) => {
   axios(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
-      return res.status(200).json( JSON.stringify(response.data));
+      return res.status(200).json(response.data);
     })
     .catch((error) => {
       console.log(error);
