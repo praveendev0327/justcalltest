@@ -4,11 +4,11 @@ import { config } from "dotenv";
 config();
 
 export const pool = createPool({
-    port : process.env.MYSQL_PORT,
-    password : process.env.MYSQL_PASSWORD,
-    host : process.env.MYSQL_HOST,
-    database : process.env.MYSQL_DATABASE_NAME,
-    user : process.env.MYSQL_USER
+    port : "3306",
+    password : "Pree@0327",
+    host : "justcall.ae",
+    database : "u873332354_justcalldb",
+    user : "u873332354_justcall"
 })
 
 export const connectToDatabase = async () =>{
