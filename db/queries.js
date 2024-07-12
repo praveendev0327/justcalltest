@@ -39,3 +39,16 @@ export const addUser = async (username, email, password ) =>{
       throw error;
     }
 }
+export const addProduct = async (branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl ) =>{
+  const QUERY = `INSERT INTO Product(branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl) VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add product");
+    throw error;
+  }
+}
