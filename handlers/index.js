@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -32,7 +32,7 @@ export const getSerpApi = async (req, res) => {
 
   axios(config)
     .then((response) => {
-     
+      console.log(JSON.stringify(response.data));
       return res.status(200).json( response.data);
     })
     .catch((error) => {
@@ -73,5 +73,17 @@ export const createProduct = async (req, res) => {
   } catch (error) {
     console.log("Error in create product");
     return res.status(500).json({ message: "Error in create product" });
+  }
+};
+
+export const createItemPurchase = async (req, res) => {
+  const {items} = req.body;
+ 
+  try {
+    const data = await addItemPurchase(items);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in create item purchase");
+    return res.status(500).json({ message: "Error in create item purchase" });
   }
 };
