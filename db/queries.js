@@ -52,3 +52,17 @@ export const addProduct = async (branchName, productName, unit, mainGroup, subGr
     throw error;
   }
 }
+
+export const addItemPurchase = async (items) =>{
+  const QUERY = `INSERT INTO pc(items) VALUES(?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [items]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add purchase items");
+    throw error;
+  }
+}
