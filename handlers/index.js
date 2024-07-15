@@ -1,7 +1,9 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
+
+
 export const getAllUsers = async (req, res) => {
   try {
     const data = await findAll();
@@ -9,6 +11,17 @@ export const getAllUsers = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllProducts");
     res.status(500).json({ message: "Error in getAllProducts" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getSubGroupList = async (req, res) => {
+  try {
+    const data = await subGroupList();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getSubGroupList");
+    res.status(500).json({ message: "Error in getSubGroupList" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
@@ -62,6 +75,33 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     console.log("Error in login user");
     return res.status(500).json({ message: "Error in login user" });
+  }
+};
+
+export const updateProduct = async (req, res) => {
+  const { barcode } = req.body;
+  const img = req.file.filename;
+  console.log("barcode",img);
+  try {
+    const data = await updateProductQuery(img, barcode);
+    console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateProduct");
+    return res.status(500).json({ message: "Error in updateProduct" });
+  }
+};
+
+export const getAllSubGroupList = async (req, res) => {
+  // const { SubGroupName } = req.body;
+  const SubGroupName = req.params.SubGroupName;
+  try {
+    const data = await getAllSubGroupListQuery(SubGroupName);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getAllSubGroupList");
+    return res.status(500).json({ message: "Error in getAllSubGroupList" });
   }
 };
 
