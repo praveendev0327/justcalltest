@@ -26,6 +26,20 @@ export const findUserById = async (id) =>{
     }
 }
 
+export const loginUserQuery = async (email, password ) =>{
+  const QUERY = `SELECT * FROM users WHERE email = ? AND password = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, password]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on login user");
+    throw error;
+  }
+}
+
 export const addUser = async (username, email, password ) =>{
     const QUERY = `INSERT INTO users(username, email, password) VALUES(?,?,?)`;
 
