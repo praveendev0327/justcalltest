@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -40,6 +40,7 @@ export const getSerpApi = async (req, res) => {
       return res.status(500).json({ message: "Error in getImageLink" });
     });
 };
+
 export const getUserById = async (req, res) => {
   const id = req.params.id;
   console.log("id : ", id);
@@ -49,6 +50,18 @@ export const getUserById = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllProducts");
     res.status(500).json({ message: "Error in getAllProducts" });
+  }
+};
+
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const data = await loginUserQuery(email, password);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in login user");
+    return res.status(500).json({ message: "Error in login user" });
   }
 };
 
