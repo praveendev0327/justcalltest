@@ -13,6 +13,19 @@ export const findAll = async () =>{
     }
 }
 
+export const subGroupList = async () =>{
+  const QUERY = "SELECT DISTINCT SubGroup FROM MainGroup";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on subGroupListAll data");
+    throw error;
+  }
+}
+
 export const findUserById = async (id) =>{
     const QUERY = "SELECT * FROM users WHERE id = ?";
     try{
@@ -36,6 +49,34 @@ export const loginUserQuery = async (email, password ) =>{
     return result[0];
   } catch (error) {
     console.log("Error occured on login user");
+    throw error;
+  }
+}
+
+export const getAllSubGroupListQuery = async (subGroupName) =>{
+  const QUERY = `SELECT * FROM MainGroup WHERE SubGroup = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [subGroupName]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on getAllSubGroupListQuery");
+    throw error;
+  }
+}
+
+export const updateProductQuery = async (img, barcode ) =>{
+  const QUERY = `UPDATE MainGroup SET img = ? WHERE Barcode = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [img, barcode]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateProductQuery");
     throw error;
   }
 }
