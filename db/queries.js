@@ -81,6 +81,20 @@ export const updateProductQuery = async (img, barcode ) =>{
   }
 }
 
+export const updateProductImage = async (img, barcode ) =>{
+  const QUERY = `UPDATE MainGroup SET image = ? WHERE Barcode = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [img, barcode]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateProductImage");
+    throw error;
+  }
+}
+
 export const addUser = async (username, email, password ) =>{
     const QUERY = `INSERT INTO users(username, email, password) VALUES(?,?,?)`;
 
