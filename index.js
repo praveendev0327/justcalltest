@@ -11,6 +11,8 @@ const upload = multer({
 
 const app = express();
 
+app.use(bodyParser.json({ limit: '50mb' }));
+
 app.use(cors());
 
 app.use(express.json());
