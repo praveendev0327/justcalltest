@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -90,6 +90,21 @@ export const updateProduct = async (req, res) => {
   } catch (error) {
     console.log("Error in updateProduct");
     return res.status(500).json({ message: "Error in updateProduct" });
+  }
+};
+
+export const updateImage = async (req, res) => {
+  const {img, barcode } = req.body;
+  // const img = req.file.filename;
+  console.log("barcode",img);
+  try {
+    const data = await updateProductImage(img, barcode);
+    console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateImage");
+    return res.status(500).json({ message: "Error in updateImage" });
   }
 };
 
