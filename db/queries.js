@@ -13,6 +13,19 @@ export const findAll = async () =>{
     }
 }
 
+export const getAllOffersQuery = async () =>{
+  const QUERY = "SELECT * FROM offers";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find all data");
+    throw error;
+  }
+}
+
 export const subGroupList = async () =>{
   const QUERY = "SELECT DISTINCT SubGroup FROM MainGroup";
   try{
