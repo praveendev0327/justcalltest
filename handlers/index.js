@@ -132,6 +132,18 @@ export const createUser = async (req, res) => {
   }
 };
 
+export const addOffers = async (req, res) => {
+  const { Name, Price, Image} = req.body;
+
+  try {
+    const data = await addOfferProduct(Name, Price, Image);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in create user");
+    return res.status(500).json({ message: "Error in create user" });
+  }
+};
+
 export const createProduct = async (req, res) => {
   const { branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl} = req.body;
  
