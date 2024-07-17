@@ -14,7 +14,7 @@ export const findAll = async () =>{
 }
 
 export const getAllOffersQuery = async () =>{
-  const QUERY = "SELECT * FROM offers";
+  const QUERY = "SELECT * FROM Offers";
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY);
