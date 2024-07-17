@@ -122,6 +122,20 @@ export const addProduct = async (branchName, productName, unit, mainGroup, subGr
   }
 }
 
+export const addOfferProduct = async (Name, Price, Image) =>{
+  const QUERY = `INSERT INTO Offers(Name, Price, Image) VALUES(?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [Name, Price, Image]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add product");
+    throw error;
+  }
+}
+
 export const addItemPurchase = async (items) =>{
   const QUERY = `INSERT INTO pc(items) VALUES(?)`;
 
