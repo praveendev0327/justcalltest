@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -19,6 +19,7 @@ const upload = multer({
 
 
 appRouter.get("/api/users", getAllUsers)
+appRouter.get("/api/offers", getAllOffers)
 appRouter.get("/api/users/allCategoryList/:SubGroupName", getAllSubGroupList)
 appRouter.get("/api/users/subGroupList", getSubGroupList)
 appRouter.get("/api/users/serpapi/:id", getSerpApi)
