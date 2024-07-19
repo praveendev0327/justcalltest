@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -28,6 +28,7 @@ appRouter.post("/api/users/create", createUser)
 appRouter.post("/api/users/offers", addOffers)
 appRouter.put("/api/users/updateProduct",upload.single("image"), updateProduct)
 appRouter.put("/api/users/updateProductImage", updateImage)
+appRouter.put("/api/users/updateOffersProduct", updateOffers)
 appRouter.post("/api/users/createProduct", createProduct)
 appRouter.post("/api/users/createItemPurchase", createItemPurchase)
 appRouter.get("/api/users/:id", getUserById)
