@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -107,15 +107,30 @@ export const updateProduct = async (req, res) => {
 export const updateImage = async (req, res) => {
   const {img, barcode } = req.body;
   // const img = req.file.filename;
-  console.log("barcode",img);
+  // console.log("barcode",img);
   try {
     const data = await updateProductImage(img, barcode);
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({ data });
     
   } catch (error) {
     console.log("Error in updateImage");
     return res.status(500).json({ message: "Error in updateImage" });
+  }
+};
+
+export const updateOffers = async (req, res) => {
+  const {id, Name, Price, Image } = req.body;
+  // const img = req.file.filename;
+  // console.log("barcode",img);
+  try {
+    const data = await updateOffersProduct(id, Name, Price, Image);
+    // console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateOffers");
+    return res.status(500).json({ message: "Error in updateOffers" });
   }
 };
 
@@ -150,8 +165,8 @@ export const addOffers = async (req, res) => {
     const data = await addOfferProduct(Name, Price, Image);
     return res.status(200).json({ data });
   } catch (error) {
-    console.log("Error in create user");
-    return res.status(500).json({ message: "Error in create user" });
+    console.log("Error in addOffers");
+    return res.status(500).json({ message: "Error in create addOffers" });
   }
 };
 
