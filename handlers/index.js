@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -77,11 +77,28 @@ export const getUserById = async (req, res) => {
   }
 };
 
+
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const data = await loginUserQuery(email, password);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in login user");
+    return res.status(500).json({ message: "Error in login user" });
+  }
+};
+
+export const getOffersByLimit = async (req, res) => {
+  // const {limit, offset} = req.body;
+  // const limit = req.params.limit;
+  // const offset = req.params.offset;
+  const limit = parseInt(req.query.limit); // Default to 10 if not provided
+  const offset = parseInt(req.query.offset);
+
+  try {
+    const data = await getOffersByLimitQuery(limit, offset);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in login user");
