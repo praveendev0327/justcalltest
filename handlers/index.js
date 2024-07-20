@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -77,6 +77,30 @@ export const getUserById = async (req, res) => {
   }
 };
 
+
+export const getProfileById = async (req, res) => {
+  const { email} = req.body;
+
+  try {
+    const data = await getProfileByIdQuery(email);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in login user");
+    return res.status(500).json({ message: "Error in login user" });
+  }
+};
+
+export const getProfileByWork = async (req, res) => {
+  const { work} = req.body;
+
+  try {
+    const data = await getProfileByWorkQuery(work);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in login user");
+    return res.status(500).json({ message: "Error in login user" });
+  }
+};
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -168,6 +192,18 @@ export const createUser = async (req, res) => {
 
   try {
     const data = await addUser(username, email, password);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in create user");
+    return res.status(500).json({ message: "Error in create user" });
+  }
+};
+
+export const createProfileMV = async (req, res) => {
+  const { firstname, lastname, email, image, company, work, url, address} = req.body;
+
+  try {
+    const data = await createProfileMVQuery(firstname, lastname, email, image, company, work, url, address);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in create user");
