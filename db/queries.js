@@ -66,6 +66,34 @@ export const loginUserQuery = async (email, password ) =>{
   }
 }
 
+export const getProfileByIdQuery = async (email) =>{
+  const QUERY = `SELECT * FROM mvprofile WHERE email = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on login user");
+    throw error;
+  }
+}
+
+export const getProfileByWorkQuery = async (work) =>{
+  const QUERY = `SELECT * FROM mvprofile WHERE work = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [work]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on login user");
+    throw error;
+  }
+}
+
 export const getOffersByLimitQuery = async (limit, offset ) =>{
   const QUERY = `SELECT * FROM Offers ORDER BY id LIMIT ? OFFSET ?`;
 
@@ -148,6 +176,20 @@ export const addUser = async (username, email, password ) =>{
       console.log("Error occured on add user");
       throw error;
     }
+}
+
+export const createProfileMVQuery = async (firstname, lastname, email, image, company, work, url, address ) =>{
+  const QUERY = `INSERT INTO mvprofile(firstname, lastname, email, image, company, work, url, address) VALUES(?,?,?,?,?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [firstname, lastname, email, image, company, work, url, address]);
+    console.log("email");
+    return email;
+  } catch (error) {
+    console.log("Error occured on add mvprofile");
+    throw error;
+  }
 }
 export const addProduct = async (branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl ) =>{
   const QUERY = `INSERT INTO Product(branchName, productName, unit, mainGroup, subGroup, barcode, unitCost, profitMargin,profitMarkup, price1, imgUrl) VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
