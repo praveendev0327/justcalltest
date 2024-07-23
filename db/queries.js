@@ -81,11 +81,18 @@ export const getProfileByIdQuery = async (email) =>{
 }
 
 export const getProfileByWorkQuery = async (work) =>{
-  const QUERY = `SELECT * FROM mvprofile WHERE work = ?`;
+    const keywords = work.split(' ').filter(keyword => keyword.trim() !== '');
+  
+  // Build the SQL WHERE clause dynamically
+  const whereClauses = keywords.map(keyword => `work LIKE ?`).join(' OR ');
+  const queryParams = keywords.map(keyword => `%${keyword}%`);
+  
+  const QUERY = `SELECT * FROM mvprofile WHERE ${whereClauses}`;
+  // const QUERY = `SELECT * FROM mvprofile WHERE work LIKE ?`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [work]);
+    const result = await client.query(QUERY, queryParams);
     console.log(result[0]);
     return result[0];
   } catch (error) {
