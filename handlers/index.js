@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery, deleteProductByIdQuery, deleteOfferByIdQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
