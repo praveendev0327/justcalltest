@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail, deleteProductById, deleteOfferById } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
