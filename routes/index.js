@@ -40,6 +40,6 @@ appRouter.put("/api/users/updateOffersProduct", updateOffers)
 appRouter.post("/api/users/createProduct", createProduct)
 appRouter.post("/api/users/createItemPurchase", createItemPurchase)
 appRouter.get("/api/users/:id", getUserById)
-appRouter.get("/api/users/deleteOfferById/:id", deleteOfferById)
+appRouter.delete("/api/users/deleteOfferById/:id", deleteOfferById)
 
 export default appRouter;
