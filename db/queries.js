@@ -213,7 +213,7 @@ export const addBanners = async (email, image) =>{
   }
 }
 
-export const addJobPostQuery = async (email, image) =>{
+export const addJobPostQuery = async (email, title, description) =>{
   const QUERY = `INSERT INTO mvjobpost(email, title, description) VALUES(?,?,?)`;
 
   try{
@@ -227,7 +227,7 @@ export const addJobPostQuery = async (email, image) =>{
   }
 }
 
-export const addCvQuery = async (email, image) =>{
+export const addCvQuery = async (email, cv) =>{
   const QUERY = `INSERT INTO mvcvs(email, cv) VALUES(?,?)`;
 
   try{
