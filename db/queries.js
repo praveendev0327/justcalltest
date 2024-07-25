@@ -148,7 +148,7 @@ export const getOffersByLimitQuery = async (limit, offset ) =>{
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [limit, offset]);
-    console.log(result[0]);
+   
     return result[0];
   } catch (error) {
     console.log("Error occured on login user");
