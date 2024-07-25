@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -222,6 +222,31 @@ export const createBannersMV = async (req, res) => {
     return res.status(500).json({ message: "Error in create banners" });
   }
 };
+
+export const createJobPostMV = async (req, res) => {
+  const { email, title, description } = req.body;
+
+  try {
+    const data = await addJobPostQuery(email, title, description );
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in createJobPostMV");
+    return res.status(500).json({ message: "Error in create createJobPostMV" });
+  }
+};
+
+export const createCvMV = async (req, res) => {
+  const { email, cv } = req.body;
+
+  try {
+    const data = await addCvQuery( email, cv );
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in createCvMV");
+    return res.status(500).json({ message: "Error in createCvMV " });
+  }
+};
+
 
 export const createProfileMV = async (req, res) => {
   const { firstname, lastname, email, image, company, work, url, address} = req.body;
