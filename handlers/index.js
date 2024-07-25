@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -87,6 +87,18 @@ export const getProfileById = async (req, res) => {
   } catch (error) {
     console.log("Error in login user");
     return res.status(500).json({ message: "Error in login user" });
+  }
+};
+
+export const getProfileByEmail = async (req, res) => {
+  const { email} = req.body;
+
+  try {
+    const data = await getProfileByEmailQuery(email);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getProfileByEmail user");
+    return res.status(500).json({ message: "Error in getProfileByEmail user" });
   }
 };
 
