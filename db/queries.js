@@ -93,6 +93,19 @@ export const getProfileByEmailQuery = async (email) =>{
     throw error;
   }
 }
+export const getJobPostByEmailQuery = async (email) =>{
+  const QUERY = `SELECT * FROM mvjobpost WHERE email = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on mv banners user");
+    throw error;
+  }
+}
 
 export const getProfileByWorkQuery = async (work) =>{
 
@@ -227,7 +240,7 @@ export const addJobPostQuery = async (email, title, description) =>{
   }
 }
 
-export const addCvQuery = async (email, cv) =>{
+export const addCvQuery = async (email, image) =>{
   const QUERY = `INSERT INTO mvcvs(email, cv) VALUES(?,?)`;
 
   try{
