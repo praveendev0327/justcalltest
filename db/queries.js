@@ -52,6 +52,19 @@ export const findUserById = async (id) =>{
     }
 }
 
+export const deleteOfferByIdQuery = async (id) =>{
+  const QUERY = "DELETE FROM Offers WHERE id = ?";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [id]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on deleteOfferByIdQuery");
+    throw error;
+  }
+}
+
 export const loginUserQuery = async (email, password ) =>{
   const QUERY = `SELECT * FROM users WHERE email = ? AND password = ?`;
 
