@@ -80,6 +80,20 @@ export const getProfileByIdQuery = async (email) =>{
   }
 }
 
+export const getProfileByEmailQuery = async (email) =>{
+  const QUERY = `SELECT * FROM mvbanners WHERE email = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on mv banners user");
+    throw error;
+  }
+}
+
 export const getProfileByWorkQuery = async (work) =>{
 
   const keywords = work.split(' ').filter(keyword => keyword.trim() !== '');
