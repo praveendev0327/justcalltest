@@ -213,6 +213,34 @@ export const addBanners = async (email, image) =>{
   }
 }
 
+export const addJobPostQuery = async (email, image) =>{
+  const QUERY = `INSERT INTO mvjobpost(email, title, description) VALUES(?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, title, description]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on addJobPostQuery");
+    throw error;
+  }
+}
+
+export const addCvQuery = async (email, image) =>{
+  const QUERY = `INSERT INTO mvcvs(email, cv) VALUES(?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, cv]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on addCvQuery");
+    throw error;
+  }
+}
+
 export const createProfileMVQuery = async (firstname, lastname, email, image, company, work, url, address ) =>{
   const QUERY = `INSERT INTO mvprofile(firstname, lastname, email, image, company, work, url, address) VALUES(?,?,?,?,?,?,?,?)`;
 
