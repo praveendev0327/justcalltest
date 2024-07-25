@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery, deleteProductByIdQuery, deleteOfferByIdQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -74,6 +74,18 @@ export const getUserById = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllProducts");
     res.status(500).json({ message: "Error in getAllProducts" });
+  }
+};
+
+export const deleteOfferById = async (req, res) => {
+  const id = req.params.id;
+  console.log("id : ", id);
+  try {
+    const data = await deleteOfferByIdQuery(id);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in deleteProductById");
+    res.status(500).json({ message: "Error in deleteProductById" });
   }
 };
 
