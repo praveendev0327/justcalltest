@@ -81,7 +81,8 @@ export const getProfileByIdQuery = async (email) =>{
 }
 
 export const getProfileByWorkQuery = async (work) =>{
-    const keywords = work.split(' ').filter(keyword => keyword.trim() !== '');
+
+  const keywords = work.split(' ').filter(keyword => keyword.trim() !== '');
   
   // Build the SQL WHERE clause dynamically
   const whereClauses = keywords.map(keyword => `work LIKE ?`).join(' OR ');
@@ -183,6 +184,19 @@ export const addUser = async (username, email, password ) =>{
       console.log("Error occured on add user");
       throw error;
     }
+}
+export const addBanners = async (email, image) =>{
+  const QUERY = `INSERT INTO mvbanners(email, image) VALUES(?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, image]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add user");
+    throw error;
+  }
 }
 
 export const createProfileMVQuery = async (firstname, lastname, email, image, company, work, url, address ) =>{
