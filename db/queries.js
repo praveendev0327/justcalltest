@@ -267,12 +267,12 @@ export const addJobPostQuery = async (email, title, description) =>{
   }
 }
 
-export const addCvQuery = async (email, cv) =>{
-  const QUERY = `INSERT INTO mvcvs(email, cv) VALUES(?,?)`;
+export const addCvQuery = async (email, name, cv ) =>{
+  const QUERY = `INSERT INTO mvcvs(email, name, cv ) VALUES(?,?,?)`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [email, cv]);
+    const result = await client.query(QUERY, [email, name, cv ]);
     console.log(result);
     return result;
   } catch (error) {
