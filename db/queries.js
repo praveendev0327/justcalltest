@@ -79,6 +79,20 @@ export const loginUserQuery = async (email, password ) =>{
   }
 }
 
+export const loginMemberQuery = async (email, password ) =>{
+  const QUERY = `SELECT * FROM mvmembers WHERE email = ? AND password = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, password]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on login user");
+    throw error;
+  }
+}
+
 export const getProfileByIdQuery = async (email) =>{
   const QUERY = `SELECT * FROM mvprofile WHERE email = ?`;
 
@@ -273,6 +287,20 @@ export const addCvQuery = async (email, name, cv ) =>{
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [email, name, cv ]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on addCvQuery");
+    throw error;
+  }
+}
+
+export const addMemberQuery = async (email, company, tradeid, activity) =>{
+  const QUERY = `INSERT INTO mvmembers(email, company, tradeid, activity) VALUES(?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, company, tradeid, activity]);
     console.log(result);
     return result;
   } catch (error) {
