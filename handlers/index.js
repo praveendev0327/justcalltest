@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -123,6 +123,19 @@ export const getJobPostByEmail = async (req, res) => {
   } catch (error) {
     console.log("Error in getJobPostByEmail user");
     return res.status(500).json({ message: "Error in getJobPostByEmail user" });
+  }
+};
+
+
+export const getCvByEmail = async (req, res) => {
+  const { email} = req.body;
+
+  try {
+    const data = await getCvByEmailQuery(email);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getCvByEmail user");
+    return res.status(500).json({ message: "Error in getCvByEmail user" });
   }
 };
 
