@@ -273,10 +273,10 @@ export const createJobPostMV = async (req, res) => {
 };
 
 export const createCvMV = async (req, res) => {
-  const { email, cv } = req.body;
+  const { email, name, cv } = req.body;
 
   try {
-    const data = await addCvQuery( email, cv );
+    const data = await addCvQuery( email, name, cv );
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in createCvMV");
