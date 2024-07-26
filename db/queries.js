@@ -253,7 +253,7 @@ export const addJobPostQuery = async (email, title, description) =>{
   }
 }
 
-export const addCvQuery = async (email, image) =>{
+export const addCvQuery = async (email, cv) =>{
   const QUERY = `INSERT INTO mvcvs(email, cv) VALUES(?,?)`;
 
   try{
