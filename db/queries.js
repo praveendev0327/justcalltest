@@ -120,6 +120,20 @@ export const getJobPostByEmailQuery = async (email) =>{
   }
 }
 
+export const getCvByEmailQuery = async (email) =>{
+  const QUERY = `SELECT * FROM mvcvs WHERE email = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on mv getCvByEmailQuery user");
+    throw error;
+  }
+}
+
 export const getProfileByWorkQuery = async (work) =>{
 
   const keywords = work.split(' ').filter(keyword => keyword.trim() !== '');
@@ -148,7 +162,7 @@ export const getOffersByLimitQuery = async (limit, offset ) =>{
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [limit, offset]);
-   
+    console.log(result[0]);
     return result[0];
   } catch (error) {
     console.log("Error occured on login user");
