@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -24,6 +24,7 @@ appRouter.get("/api/users/allCategoryList/:SubGroupName", getAllSubGroupList)
 appRouter.get("/api/users/subGroupList", getSubGroupList)
 appRouter.get("/api/users/getoffersbylimit", getOffersByLimit)
 appRouter.get("/api/users/serpapi/:id", getSerpApi)
+appRouter.get("/api/users/getAllJobPostMV", getAllJobPostMV)
 appRouter.post("/api/users/login", loginUser)
 appRouter.post("/api/users/loginmember", loginMember)
 appRouter.post("/api/users/getprofilebyid", getProfileById)
