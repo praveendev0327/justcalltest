@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -33,6 +33,17 @@ export const getSubGroupList = async (req, res) => {
   } catch (error) {
     console.log("Error in getSubGroupList");
     res.status(500).json({ message: "Error in getSubGroupList" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getAllJobPostMV = async (req, res) => {
+  try {
+    const data = await getAllJobPostQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getAllJobPostMV");
+    res.status(500).json({ message: "Error in getAllJobPostMV" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
