@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -22,6 +22,17 @@ export const getAllOffers = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllProducts");
     res.status(500).json({ message: "Error in getAllProducts" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getAllDeliverylist = async (req, res) => {
+  try {
+    const data = await getAllDeliveryListQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getAllDeliveryListQuery");
+    res.status(500).json({ message: "Error in getAllDeliveryListQuery" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
@@ -264,6 +275,18 @@ export const createUser = async (req, res) => {
 
   try {
     const data = await addUser(username, email, password);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in create user");
+    return res.status(500).json({ message: "Error in create user" });
+  }
+};
+
+export const createDeliveryList = async (req, res) => {
+  const { name, phone, address, orderlist} = req.body;
+
+  try {
+    const data = await addDeliveryListQuery(name, phone, address, orderlist);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in create user");
