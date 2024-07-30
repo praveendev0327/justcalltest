@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -20,6 +20,7 @@ const upload = multer({
 
 appRouter.get("/api/users", getAllUsers)
 appRouter.get("/api/offers", getAllOffers)
+appRouter.get("/api/deliverylist", getAllDeliverylist)
 appRouter.get("/api/users/allCategoryList/:SubGroupName", getAllSubGroupList)
 appRouter.get("/api/users/subGroupList", getSubGroupList)
 appRouter.get("/api/users/getoffersbylimit", getOffersByLimit)
@@ -33,6 +34,7 @@ appRouter.post("/api/users/getjobpostbyemail", getJobPostByEmail)
 appRouter.post("/api/users/getcvbyemail", getCvByEmail)
 appRouter.post("/api/users/getprofilebywork", getProfileByWork)
 appRouter.post("/api/users/create", createUser)
+appRouter.post("/api/users/createDelivery", createDeliveryList)
 appRouter.post("/api/users/createBannersMV", createBannersMV)
 appRouter.post("/api/users/createJobPostMV", createJobPostMV)
 appRouter.post("/api/users/createCvMV", createCvMV)
