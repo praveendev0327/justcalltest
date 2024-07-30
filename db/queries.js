@@ -26,6 +26,19 @@ export const getAllOffersQuery = async () =>{
   }
 }
 
+export const getAllDeliveryListQuery = async () =>{
+  const QUERY = "SELECT * FROM delivery ORDER BY id DESC";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find all data");
+    throw error;
+  }
+}
+
 export const subGroupList = async () =>{
   const QUERY = "SELECT DISTINCT SubGroup FROM MainGroup";
   try{
@@ -266,6 +279,22 @@ export const addUser = async (username, email, password ) =>{
       throw error;
     }
 }
+
+export const addDeliveryListQuery = async (name, phone, address, orderlist) =>{
+  const QUERY = `INSERT INTO delivery(name, phone, address, orderlist ) VALUES(?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [name, phone, address, orderlist]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add user");
+    throw error;
+  }
+}
+
+
 export const addBanners = async (email, image) =>{
   const QUERY = `INSERT INTO mvbanners(email, image) VALUES(?,?)`;
 
