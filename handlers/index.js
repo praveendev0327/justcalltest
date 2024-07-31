@@ -298,10 +298,10 @@ export const createUser = async (req, res) => {
 };
 
 export const createDeliveryList = async (req, res) => {
-  const { name, phone, address, orderlist} = req.body;
+  const { name, phone, address, orderlist, orderstatus} = req.body;
 
   try {
-    const data = await addDeliveryListQuery(name, phone, address, orderlist);
+    const data = await addDeliveryListQuery(name, phone, address, orderlist, orderstatus);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in create user");
