@@ -299,7 +299,7 @@ export const createUser = async (req, res) => {
 
 export const createDeliveryList = async (req, res) => {
   const { name, phone, address, orderlist, orderstatus} = req.body;
-
+  console.log(orderstatus);
   try {
     const data = await addDeliveryListQuery(name, phone, address, orderlist, orderstatus);
     return res.status(200).json({ data });
