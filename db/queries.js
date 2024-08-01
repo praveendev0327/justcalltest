@@ -252,12 +252,12 @@ export const updateProductImage = async (img, barcode ) =>{
   }
 }
 
-export const updateDeliveryStatusQuery = async (status, serialno, id ) =>{
-  const QUERY = `UPDATE delivery SET status = ? , serialno = ? WHERE id = ?`;
+export const updateDeliveryStatusQuery = async (orderstatus, serialno, id ) =>{
+  const QUERY = `UPDATE delivery SET orderstatus = ? , serialno = ? WHERE id = ?`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [status, serialno, id ]);
+    const result = await client.query(QUERY, [orderstatus, serialno, id ]);
     console.log(result[0]);
     return result[0];
   } catch (error) {
