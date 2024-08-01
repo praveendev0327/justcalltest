@@ -295,11 +295,11 @@ export const addUser = async (username, email, password ) =>{
 }
 
 export const addDeliveryListQuery = async (name, phone, address, orderlist, orderstatus) =>{
-  const QUERY = `INSERT INTO delivery(name, phone, address, orderlist, status ) VALUES(?,?,?,?,?)`;
+  const QUERY = `INSERT INTO delivery(name, phone, address, orderlist, orderstatus) VALUES(?,?,?,?,?)`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [name, phone, address, orderlist,orderstatus]);
+    const result = await client.query(QUERY, [name, phone, address, orderlist, orderstatus]);
     console.log(result);
     return result;
   } catch (error) {
