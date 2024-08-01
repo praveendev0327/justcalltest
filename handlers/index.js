@@ -304,8 +304,9 @@ export const createDeliveryList = async (req, res) => {
     const data = await addDeliveryListQuery(name, phone, address, orderlist, orderstatus);
     return res.status(200).json({ data });
   } catch (error) {
-    console.log("Error in create user");
-    return res.status(500).json({ message: "Error in create user" });
+    console.log(error);
+    console.log("Error in createDeliveryListr");
+    return res.status(500).json({ message: "Error in createDeliveryList" });
   }
 };
 
