@@ -244,11 +244,11 @@ export const updateImage = async (req, res) => {
 };
 
 export const updateDeliveryStatus = async (req, res) => {
-  const {status, serialno, id  } = req.body;
+  const {orderstatus, serialno, id  } = req.body;
   // const img = req.file.filename;
   // console.log("barcode",img);
   try {
-    const data = await updateDeliveryStatusQuery(status, serialno, id );
+    const data = await updateDeliveryStatusQuery(orderstatus, serialno, id );
     // console.log(data);
     return res.status(200).json({ data });
     
