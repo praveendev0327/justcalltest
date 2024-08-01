@@ -303,6 +303,7 @@ export const addDeliveryListQuery = async (name, phone, address, orderlist, orde
     console.log(result);
     return result;
   } catch (error) {
+      console.log(error);
     console.log("Error occured on add user");
     throw error;
   }
