@@ -26,6 +26,20 @@ export const getAllOffersQuery = async () =>{
   }
 }
 
+export const getDeliveryAppTokenQuery = async () =>{
+  const QUERY = "SELECT * FROM token";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on getDeliveryAppTokenQuery");
+    throw error;
+  }
+}
+
+
 export const getAllDeliveryListQuery = async () =>{
   const QUERY = "SELECT * FROM delivery ORDER BY id DESC";
   try{
@@ -266,6 +280,20 @@ export const updateDeliveryStatusQuery = async (orderstatus, serialno, id ) =>{
   }
 }
 
+export const updateDeliveryAppTokenQuery = async (token, id) =>{
+  const QUERY = `UPDATE token SET token = ? WHERE id = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [token, id ]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateDeliveryStatusQuery");
+    throw error;
+  }
+}
+
 export const updateOffersProduct = async (id, Name, Price, Image) =>{
   const QUERY = `UPDATE Offers SET Name = ?, Price = ?, Image = ? WHERE id = ?`;
 
@@ -295,16 +323,15 @@ export const addUser = async (username, email, password ) =>{
 }
 
 export const addDeliveryListQuery = async (name, phone, address, orderlist, orderstatus) =>{
-  const QUERY = `INSERT INTO delivery(name, phone, address, orderlist, orderstatus) VALUES(?,?,?,?,?)`;
-
+  const QUERY = `INSERT INTO delivery(name, phone, address, orderlist, orderstatus ) VALUES(?,?,?,?,?)`;
+  console.log(orderstatus);
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [name, phone, address, orderlist, orderstatus]);
     console.log(result);
     return result;
   } catch (error) {
-      console.log(error);
-    console.log("Error occured on add user");
+    console.log("Error occured on createDeliveryList");
     throw error;
   }
 }
