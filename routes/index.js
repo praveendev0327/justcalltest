@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -20,6 +20,7 @@ const upload = multer({
 
 appRouter.get("/api/users", getAllUsers)
 appRouter.get("/api/offers", getAllOffers)
+appRouter.get("/api/getDeliveryAppToken", getDeliveryAppToken)
 appRouter.get("/api/deliverylist", getAllDeliverylist)
 appRouter.get("/api/users/allCategoryList/:SubGroupName", getAllSubGroupList)
 appRouter.get("/api/users/subGroupList", getSubGroupList)
@@ -44,6 +45,7 @@ appRouter.post("/api/users/offers", addOffers)
 appRouter.put("/api/users/updateProduct",upload.single("image"), updateProduct)
 appRouter.put("/api/users/updateProductImage", updateImage)
 appRouter.put("/api/users/updateDeliveryStatus", updateDeliveryStatus)
+appRouter.put("/api/users/updateDeliveryAppToken", updateDeliveryAppToken)
 appRouter.put("/api/users/updateOffersProduct", updateOffers)
 appRouter.post("/api/users/createProduct", createProduct)
 appRouter.post("/api/users/createItemPurchase", createItemPurchase)
