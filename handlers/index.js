@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -22,6 +22,17 @@ export const getAllOffers = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllProducts");
     res.status(500).json({ message: "Error in getAllProducts" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getDeliveryAppToken = async (req, res) => {
+  try {
+    const data = await getDeliveryAppTokenQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getDeliveryAppToken");
+    res.status(500).json({ message: "Error in getDeliveryAppToken" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
@@ -258,6 +269,21 @@ export const updateDeliveryStatus = async (req, res) => {
   }
 };
 
+export const updateDeliveryAppToken = async (req, res) => {
+  const {token, id  } = req.body;
+  // const img = req.file.filename;
+  // console.log("barcode",img);
+  try {
+    const data = await updateDeliveryAppTokenQuery(token, id);
+    // console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateDeliveryAppToken");
+    return res.status(500).json({ message: "Error in updateDeliveryAppToken" });
+  }
+};
+
 export const updateOffers = async (req, res) => {
   const {id, Name, Price, Image } = req.body;
   // const img = req.file.filename;
@@ -299,13 +325,12 @@ export const createUser = async (req, res) => {
 
 export const createDeliveryList = async (req, res) => {
   const { name, phone, address, orderlist, orderstatus} = req.body;
-  console.log(orderstatus);
+
   try {
     const data = await addDeliveryListQuery(name, phone, address, orderlist, orderstatus);
     return res.status(200).json({ data });
   } catch (error) {
-    console.log(error);
-    console.log("Error in createDeliveryListr");
+    console.log("Error in createDeliveryList");
     return res.status(500).json({ message: "Error in createDeliveryList" });
   }
 };
