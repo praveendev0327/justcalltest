@@ -332,10 +332,11 @@ export const registerCustomerQuery = async (username, phone, password, address, 
     console.log("data",havData.count);
     console.log(checkPhone);
     if (havData > 0) {
+          console.log("havData");
       return 'Phone number already exists';
     }else{
       const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
-      console.log(result);
+      console.log("que");
       return result;
     }
    
