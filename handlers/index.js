@@ -324,10 +324,10 @@ export const createUser = async (req, res) => {
 };
 
 export const registerCustomer = async (req, res) => {
-  const { username, phone, password, address } = req.body;
+  const { username, phone, password, address, apptoken } = req.body;
 
   try {
-    const data = await registerCustomerQuery(username, phone, password, address);
+    const data = await registerCustomerQuery(username, phone, password, address, apptoken);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in create customer");
