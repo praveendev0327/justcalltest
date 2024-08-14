@@ -327,9 +327,10 @@ export const registerCustomerQuery = async (username, phone, password, address, 
   try{
     const client = await pool.getConnection();
     const checkPhone = await client.query(checkQuery, [ phone]);
-    console.log(checkPhone[0].count);
+    const haveData = checkPhone[0]['count'];
+    console.log(haveData);
     console.log(checkPhone);
-    if (checkPhone[0].count > 0) {
+    if (haveData > 0) {
       return checkPhone.status(400).json({ error: 'Phone number already exists' });
     }
     const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
