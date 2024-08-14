@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -320,6 +320,18 @@ export const createUser = async (req, res) => {
   } catch (error) {
     console.log("Error in create user");
     return res.status(500).json({ message: "Error in create user" });
+  }
+};
+
+export const registerCustomer = async (req, res) => {
+  const { username, phone, password, address } = req.body;
+
+  try {
+    const data = await registerCustomerQuery(username, phone, password, address);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in create customer");
+    return res.status(500).json({ message: "Error in create customer" });
   }
 };
 
