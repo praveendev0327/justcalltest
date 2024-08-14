@@ -331,12 +331,14 @@ export const registerCustomerQuery = async (username, phone, password, address, 
     const havData = haveData[0];
     console.log("data",havData.count);
     console.log(checkPhone);
-    if (havData > 0) {
-      return checkPhone.status(400).json({ error: 'Phone number already exists' });
+    if (haveData > 0) {
+      return 'Phone number already exists';
+    }else{
+      const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
+      console.log(result);
+      return result;
     }
-    const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
-    console.log(result);
-    return result;
+   
   } catch (error) {
     console.log("Error occured on registerCustomerQuery");
     throw error;
