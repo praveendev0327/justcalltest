@@ -321,38 +321,20 @@ export const addUser = async (username, email, password ) =>{
       throw error;
     }
 }
-
 export const registerCustomerQuery = async (username, phone, password, address, apptoken) =>{
   const QUERY = `INSERT INTO customer(username, phone, password, address, apptoken) VALUES(?,?,?,?,?)`;
   const checkQuery = 'SELECT COUNT(*) AS count FROM customer WHERE phone = ?';
   try{
     const client = await pool.getConnection();
-
-    client.query(checkQuery, [phone], (err, results) => {
-      if (err) {
-        console.error('Error checking phone number:', err);
-        return res.status(500).json({ error: 'Database error' });
-      }
-  
-      if (results[0].count > 0) {
-        return res.status(400).json({ error: 'Phone number already exists' });
-      }
-  
-      // Phone number does not exist, proceed with the insertion
-      const insertQuery = 'INSERT INTO customer(username, phone, password, address, apptoken) VALUES(?,?,?,?,?)';
-      client.query(insertQuery, [username, phone, password, address, apptoken], (err, result) => {
-        if (err) {
-          console.error('Error inserting data:', err);
-          return res.status(500).json({ error: 'Database error' });
-        }
-  
-        res.status(201).json({ message: 'Customer added successfully', customerId: result.insertId });
-      });
-    });
-
-    // const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
-    // console.log(result);
-    // return result;
+    const checkPhone = await client.query(checkQuery, [ phone]);
+    console.log(checkPhone[0].count);
+    console.log(checkPhone);
+    if (checkPhone[0].count > 0) {
+      return checkPhone.status(400).json({ error: 'Phone number already exists' });
+    }
+    const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
+    console.log(result);
+    return result;
   } catch (error) {
     console.log("Error occured on registerCustomerQuery");
     throw error;
