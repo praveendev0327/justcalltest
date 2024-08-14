@@ -331,7 +331,7 @@ export const registerCustomerQuery = async (username, phone, password, address, 
     const havData = haveData[0];
     console.log("data",havData.count);
     console.log(checkPhone);
-    if (havData > 0) {
+    if (havData.count > 0) {
           console.log("havData");
       return 'Phone number already exists';
     }else{
