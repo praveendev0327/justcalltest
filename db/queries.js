@@ -133,6 +133,22 @@ export const loginMemberQuery = async (email, password ) =>{
   }
 }
 
+export const loginCustomerQuery = async (phone, password ) =>{
+  const QUERY = `SELECT * FROM customer WHERE phone = ? AND password = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [phone, password ]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on login customer");
+    throw error;
+  }
+}
+
+
+
 export const getProfileByIdQuery = async (email) =>{
   const QUERY = `SELECT * FROM mvprofile WHERE email = ?`;
 
@@ -321,6 +337,7 @@ export const addUser = async (username, email, password ) =>{
       throw error;
     }
 }
+
 export const registerCustomerQuery = async (username, phone, password, address, apptoken) =>{
   const QUERY = `INSERT INTO customer(username, phone, password, address, apptoken) VALUES(?,?,?,?,?)`;
   const checkQuery = 'SELECT COUNT(*) AS count FROM customer WHERE phone = ?';
@@ -331,12 +348,11 @@ export const registerCustomerQuery = async (username, phone, password, address, 
     const havData = haveData[0];
     console.log("data",havData.count);
     console.log(checkPhone);
-    if (havData.count > 0) {
-          console.log("havData");
+    if (havData > 0) {
       return 'Phone number already exists';
     }else{
       const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
-      console.log("que");
+      console.log(result);
       return result;
     }
    
