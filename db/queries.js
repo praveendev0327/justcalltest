@@ -322,6 +322,20 @@ export const addUser = async (username, email, password ) =>{
     }
 }
 
+export const registerCustomerQuery = async (username, phone, password, address) =>{
+  const QUERY = `INSERT INTO customer(username, phone, password, address) VALUES(?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [username, phone, password, address]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on registerCustomerQuery");
+    throw error;
+  }
+}
+
 export const addDeliveryListQuery = async (name, phone, address, orderlist, orderstatus) =>{
   const QUERY = `INSERT INTO delivery(name, phone, address, orderlist, orderstatus ) VALUES(?,?,?,?,?)`;
   console.log(orderstatus);
