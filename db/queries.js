@@ -322,12 +322,12 @@ export const addUser = async (username, email, password ) =>{
     }
 }
 
-export const registerCustomerQuery = async (username, phone, password, address) =>{
-  const QUERY = `INSERT INTO customer(username, phone, password, address) VALUES(?,?,?,?)`;
+export const registerCustomerQuery = async (username, phone, password, address, apptoken) =>{
+  const QUERY = `INSERT INTO customer(username, phone, password, address, apptoken) VALUES(?,?,?,?,?)`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [username, phone, password, address]);
+    const result = await client.query(QUERY, [username, phone, password, address, apptoken]);
     console.log(result);
     return result;
   } catch (error) {
