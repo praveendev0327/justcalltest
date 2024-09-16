@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -47,6 +47,7 @@ appRouter.post("/api/users/offers", addOffers)
 appRouter.put("/api/users/updateProduct",upload.single("image"), updateProduct)
 appRouter.put("/api/users/updateProductImage", updateImage)
 appRouter.put("/api/users/updateDeliveryStatus", updateDeliveryStatus)
+appRouter.put("/api/users/updateAccountStatus", updateAccountStatus)
 appRouter.put("/api/users/updateDeliveryAppToken", updateDeliveryAppToken)
 appRouter.put("/api/users/updateOffersProduct", updateOffers)
 appRouter.post("/api/users/createProduct", createProduct)
