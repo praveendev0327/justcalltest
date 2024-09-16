@@ -296,6 +296,20 @@ export const updateDeliveryStatusQuery = async (orderstatus, serialno, id ) =>{
   }
 }
 
+export const updateAccountStatusQuery = async (accountstatus, phone ) =>{
+  const QUERY = `UPDATE customer SET accountstatus = ? WHERE phone = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [accountstatus, phone]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateAccountStatusQuery");
+    throw error;
+  }
+}
+
 export const updateDeliveryAppTokenQuery = async (token, id) =>{
   const QUERY = `UPDATE token SET token = ? WHERE id = ?`;
 
