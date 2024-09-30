@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -60,5 +60,7 @@ appRouter.post("/api/users/createProduct", createProduct)
 appRouter.post("/api/users/createItemPurchase", createItemPurchase)
 appRouter.get("/api/users/:id", getUserById)
 appRouter.delete("/api/users/deleteOfferById/:id", deleteOfferById)
+appRouter.delete("/api/users/deleteSectionById/:id", deleteSectionById)
+appRouter.delete("/api/users/deleteSectionProductById/:id", deleteSectionProductById)
 
 export default appRouter;
