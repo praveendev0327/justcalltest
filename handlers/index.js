@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery, getAllSectionsQuery, addNewSectionsQuery, addSectionProductsQuery, getAllSectionProductsQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -20,8 +20,29 @@ export const getAllOffers = async (req, res) => {
     const data = await getAllOffersQuery();
     return res.status(200).json({ data });
   } catch (error) {
-    console.log("Error in getAllProducts");
-    res.status(500).json({ message: "Error in getAllProducts" });
+    console.log("Error in getAllOffers");
+    res.status(500).json({ message: "Error in getAllOffers" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+export const getAllSections = async (req, res) => {
+  try {
+    const data = await getAllSectionsQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getAllSections");
+    res.status(500).json({ message: "Error in getAllSections" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getAllSectionProducts = async (req, res) => {
+  try {
+    const data = await getAllSectionProductsQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getAllSectionProducts");
+    res.status(500).json({ message: "Error in getAllSectionProducts" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
@@ -326,6 +347,36 @@ export const updateOffers = async (req, res) => {
   }
 };
 
+export const updateSections = async (req, res) => {
+  const {id, mainsection, subsection, image } = req.body;
+  // const img = req.file.filename;
+  // console.log("barcode",img);
+  try {
+    const data = await updateOffersProduct(id, mainsection, subsection, image);
+    // console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateSections");
+    return res.status(500).json({ message: "Error in updateSections" });
+  }
+};
+
+export const updateSectionProducts = async (req, res) => {
+  const {id, subsection, name, price, image } = req.body;
+  // const img = req.file.filename;
+  // console.log("barcode",img);
+  try {
+    const data = await updateOffersProduct(id, subsection, name, price, image);
+    // console.log(data);
+    return res.status(200).json({ data });
+    
+  } catch (error) {
+    console.log("Error in updateSectionProducts");
+    return res.status(500).json({ message: "Error in updateSectionProducts" });
+  }
+};
+
 export const getAllSubGroupList = async (req, res) => {
   // const { SubGroupName } = req.body;
   const SubGroupName = req.params.SubGroupName;
@@ -444,6 +495,30 @@ export const addOffers = async (req, res) => {
   } catch (error) {
     console.log("Error in addOffers");
     return res.status(500).json({ message: "Error in create addOffers" });
+  }
+};
+
+export const addNewSections = async (req, res) => {
+  const { mainsection, subsection, image} = req.body;
+
+  try {
+    const data = await addNewSectionsQuery(mainsection, subsection, image);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in addNewSections");
+    return res.status(500).json({ message: "Error in create addNewSections" });
+  }
+};
+
+export const addSectionProducts = async (req, res) => {
+  const { subsection, name, price, image} = req.body;
+
+  try {
+    const data = await addSectionProductsQuery(subsection, name, price, image);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in addSectionProducts");
+    return res.status(500).json({ message: "Error in create addSectionProducts" });
   }
 };
 
