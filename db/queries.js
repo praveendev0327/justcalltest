@@ -131,6 +131,32 @@ export const deleteOfferByIdQuery = async (id) =>{
   }
 }
 
+export const deleteSectionByIdQuery = async (id) =>{
+  const QUERY = "DELETE FROM section WHERE id = ?";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [id]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on deleteSectionByIdQuery");
+    throw error;
+  }
+}
+
+export const deleteSectionProductByIdQuery = async (id) =>{
+  const QUERY = "DELETE FROM sectionproducts WHERE id = ?";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [id]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on deleteSectionByIdQuery");
+    throw error;
+  }
+}
+
 export const loginUserQuery = async (email, password ) =>{
   const QUERY = `SELECT * FROM users WHERE email = ? AND password = ?`;
 
