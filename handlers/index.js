@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery, getAllSectionsQuery, addNewSectionsQuery, addSectionProductsQuery, getAllSectionProductsQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery, getAllSectionsQuery, addNewSectionsQuery, addSectionProductsQuery, getAllSectionProductsQuery, deleteSectionByIdQuery, updateSectionsQuery, updateSectionProductsQuery, deleteSectionProductByIdQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -140,6 +140,30 @@ export const deleteOfferById = async (req, res) => {
   } catch (error) {
     console.log("Error in deleteProductById");
     res.status(500).json({ message: "Error in deleteProductById" });
+  }
+};
+
+export const deleteSectionById = async (req, res) => {
+  const id = req.params.id;
+  console.log("id : ", id);
+  try {
+    const data = await deleteSectionByIdQuery(id);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in deleteSectionById");
+    res.status(500).json({ message: "Error in deleteSectionById" });
+  }
+};
+
+export const deleteSectionProductById = async (req, res) => {
+  const id = req.params.id;
+  console.log("id : ", id);
+  try {
+    const data = await deleteSectionProductByIdQuery(id);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in deleteSectionProductById");
+    res.status(500).json({ message: "Error in deleteSectionProductById" });
   }
 };
 
@@ -352,7 +376,7 @@ export const updateSections = async (req, res) => {
   // const img = req.file.filename;
   // console.log("barcode",img);
   try {
-    const data = await updateOffersProduct(id, mainsection, subsection, image);
+    const data = await updateSectionsQuery(id, mainsection, subsection, image);
     // console.log(data);
     return res.status(200).json({ data });
     
@@ -367,7 +391,7 @@ export const updateSectionProducts = async (req, res) => {
   // const img = req.file.filename;
   // console.log("barcode",img);
   try {
-    const data = await updateOffersProduct(id, subsection, name, price, image);
+    const data = await updateSectionProductsQuery(id, subsection, name, price, image);
     // console.log(data);
     return res.status(200).json({ data });
     
