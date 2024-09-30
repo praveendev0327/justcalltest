@@ -26,6 +26,32 @@ export const getAllOffersQuery = async () =>{
   }
 }
 
+export const getAllSectionsQuery = async () =>{
+  const QUERY = "SELECT * FROM section";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find all data");
+    throw error;
+  }
+}
+
+export const getAllSectionProductsQuery = async () =>{
+  const QUERY = "SELECT * FROM sectionproducts";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find all data");
+    throw error;
+  }
+}
+
 export const getDeliveryAppTokenQuery = async () =>{
   const QUERY = "SELECT * FROM token";
   try{
@@ -338,6 +364,34 @@ export const updateOffersProduct = async (id, Name, Price, Image) =>{
   }
 }
 
+export const updateSectionsQuery = async (id, mainsection, subsection, image) =>{
+  const QUERY = `UPDATE section SET mainsection = ?, subsection = ?, image = ? WHERE id = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [mainsection, subsection, image, id]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateSectionsQuery");
+    throw error;
+  }
+}
+
+export const updateSectionProductsQuery = async (id, subsection, name, price, image) =>{
+  const QUERY = `UPDATE sectionproducts SET subsection = ?, name = ?, price = ?, image = ? WHERE id = ?`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [subsection, name, price, image, id]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on updateSectionProductsQuery");
+    throw error;
+  }
+}
+
 export const addUser = async (username, email, password ) =>{
     const QUERY = `INSERT INTO users(username, email, password) VALUES(?,?,?)`;
 
@@ -484,6 +538,35 @@ export const addOfferProduct = async (Name, Price, Image) =>{
     return result;
   } catch (error) {
     console.log("Error occured on add product");
+    throw error;
+  }
+}
+
+
+export const addNewSectionsQuery = async (mainsection, subsection, image) =>{
+  const QUERY = `INSERT INTO section(mainsection, subsection, image) VALUES(?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [mainsection, subsection, image]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add new section");
+    throw error;
+  }
+}
+
+export const addSectionProductsQuery = async (subsection, name, price, image) =>{
+  const QUERY = `INSERT INTO sectionproducts(subsection, name, price, image) VALUES(?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [subsection, name, price, image]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on add section products");
     throw error;
   }
 }
