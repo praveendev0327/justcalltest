@@ -118,6 +118,19 @@ export const findUserById = async (id) =>{
     }
 }
 
+export const getSectionProductsByIdQuery = async (id) =>{
+  const QUERY = "SELECT * FROM sectionproducts WHERE subsection = ?";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [id]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find sectionproducts by id");
+    throw error;
+  }
+}
+
 export const deleteOfferByIdQuery = async (id) =>{
   const QUERY = "DELETE FROM Offers WHERE id = ?";
   try{
