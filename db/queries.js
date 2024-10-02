@@ -130,6 +130,18 @@ export const getSectionProductsByIdQuery = async (id) =>{
     throw error;
   }
 }
+export const getDeliveryByIdQuery = async (id) =>{
+  const QUERY = "SELECT * FROM delivery WHERE phone = ? ORDER BY id DESC";
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [id]);
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    console.log("Error occured on find sectionproducts by id");
+    throw error;
+  }
+}
 
 export const deleteOfferByIdQuery = async (id) =>{
   const QUERY = "DELETE FROM Offers WHERE id = ?";
