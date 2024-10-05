@@ -538,6 +538,20 @@ export const addCvQuery = async (email, name, cv ) =>{
   }
 }
 
+export const addMemberQuery = async (email, company, tradeid, activity) =>{
+  const QUERY = `INSERT INTO mvmembers(email, company, tradeid, activity) VALUES(?,?,?,?)`;
+
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY, [email, company, tradeid, activity]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log("Error occured on addCvQuery");
+    throw error;
+  }
+}
+
 export const createEventRegisterQuery = async (email, company, phone, roolup, food) =>{
   const QUERY = `INSERT INTO mveventregister(email, company, phone, roolup, food) VALUES(?,?,?,?)`;
 
