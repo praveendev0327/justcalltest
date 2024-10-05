@@ -553,7 +553,7 @@ export const addMemberQuery = async (email, company, tradeid, activity) =>{
 }
 
 export const createEventRegisterQuery = async (email, company, phone, roolup, food) =>{
-  const QUERY = `INSERT INTO mveventregister(email, company, phone, roolup, food) VALUES(?,?,?,?)`;
+  const QUERY = `INSERT INTO mveventregister(email, company, phone, roolup, food) VALUES(?,?,?,?,?)`;
 
   try{
     const client = await pool.getConnection();
