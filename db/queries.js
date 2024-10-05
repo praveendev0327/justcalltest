@@ -552,7 +552,7 @@ export const addMemberQuery = async (email, company, tradeid, activity) =>{
   }
 }
 
-export const createEventRegisterQuery = async (email, company, phone, roolup, food) =>{
+export const createEventRegisterQuery = async (email, company, phone, rollup, food) =>{
   const QUERY = `INSERT INTO mveventregister(email, company, phone, rollup, food) VALUES(?,?,?,?,?)`;
 
   try{
