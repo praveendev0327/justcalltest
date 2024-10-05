@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById, createEventRegisterMV } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -45,6 +45,7 @@ appRouter.post("/api/users/createJobPostMV", createJobPostMV)
 appRouter.post("/api/users/createCvMV", createCvMV)
 appRouter.post("/api/users/createProfileMV", createProfileMV)
 appRouter.post("/api/users/createMemberMV", createMemberMV)
+appRouter.post("/api/users/createEventRegisterMV", createEventRegisterMV)
 appRouter.post("/api/users/offers", addOffers)
 appRouter.post("/api/users/addnewsections", addNewSections)
 appRouter.post("/api/users/addsectionproducts", addSectionProducts)
