@@ -520,10 +520,10 @@ export const createMemberMV = async (req, res) => {
 };
 
 export const createEventRegisterMV = async (req, res) => {
-  const { email, company, phone, rollup, food} = req.body;
+  const {email, company, phone, rollup, food, event} = req.body;
 
   try {
-    const data = await createEventRegisterQuery( email, company, phone, rollup, food );
+    const data = await createEventRegisterQuery( email, company, phone, rollup, food, event );
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in createEventRegisterMV");
