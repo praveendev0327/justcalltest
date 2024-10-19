@@ -1,4 +1,4 @@
-import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery, getAllSectionsQuery, addNewSectionsQuery, addSectionProductsQuery, getAllSectionProductsQuery, deleteSectionByIdQuery, updateSectionsQuery, updateSectionProductsQuery, deleteSectionProductByIdQuery, getSectionProductsByIdQuery, getDeliveryByIdQuery, createEventRegisterQuery } from "../db/queries.js";
+import { findAll, findUserById, addUser, addProduct, addItemPurchase, loginUserQuery, subGroupList, getAllSubGroupListQuery, updateProductQuery, updateProductImage, addOfferProduct, getAllOffersQuery, updateOffersProduct, getOffersByLimitQuery, createProfileMVQuery, getProfileByIdQuery, getProfileByWorkQuery, addBanners, getProfileByEmailQuery, addJobPostQuery, addCvQuery, getJobPostByEmailQuery,  deleteOfferByIdQuery, getCvByEmailQuery, addMemberQuery, loginMemberQuery, getAllJobPostQuery, addDeliveryListQuery, getAllDeliveryListQuery, updateDeliveryStatusQuery, updateDeliveryAppTokenQuery, getDeliveryAppTokenQuery, registerCustomerQuery, loginCustomerQuery, updateAccountStatusQuery, getAllSectionsQuery, addNewSectionsQuery, addSectionProductsQuery, getAllSectionProductsQuery, deleteSectionByIdQuery, updateSectionsQuery, updateSectionProductsQuery, deleteSectionProductByIdQuery, getSectionProductsByIdQuery, getDeliveryByIdQuery, createEventRegisterQuery, getEventRegCountMVQuery } from "../db/queries.js";
 import bodyParser from "body-parser";
 import https from "https";
 import axios from "axios";
@@ -87,6 +87,17 @@ export const getAllJobPostMV = async (req, res) => {
   } catch (error) {
     console.log("Error in getAllJobPostMV");
     res.status(500).json({ message: "Error in getAllJobPostMV" });
+  }
+  //    return res.status(200).send("GetAllProduct")
+};
+
+export const getEventRegCountMV = async (req, res) => {
+  try {
+    const data = await getEventRegCountMVQuery();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log("Error in getEventRegCountMV");
+    res.status(500).json({ message: "Error in getEventRegCountMV" });
   }
   //    return res.status(200).send("GetAllProduct")
 };
@@ -520,10 +531,10 @@ export const createMemberMV = async (req, res) => {
 };
 
 export const createEventRegisterMV = async (req, res) => {
-  const {email, company, phone, rollup, food, event} = req.body;
+  const {name, email, company, phone, rollup, food, event} = req.body;
 
   try {
-    const data = await createEventRegisterQuery( email, company, phone, rollup, food, event );
+    const data = await createEventRegisterQuery(name, email, company, phone, rollup, food, event);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in createEventRegisterMV");
