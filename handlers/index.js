@@ -534,7 +534,7 @@ export const createEventRegisterMV = async (req, res) => {
   const {name, email, company, phone, rollup, food, event, familycount} = req.body;
 
   try {
-    const data = await createEventRegisterQuery(name, email, company, phone, rollup, food, event , familycoun);
+    const data = await createEventRegisterQuery(name, email, company, phone, rollup, food, event , familycount);
     return res.status(200).json({ data });
   } catch (error) {
     console.log("Error in createEventRegisterMV");
