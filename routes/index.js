@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById, createEventRegisterMV } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById, createEventRegisterMV, getEventRegCountMV } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
 
 const appRouter = Router();
 
+//
 const storage = multer.diskStorage({
     destination : "./upload/images",
     filename : (req, file, cb) =>{
@@ -16,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage : storage
 })
-
+// 
 
 appRouter.get("/api/users", getAllUsers)
 appRouter.get("/api/offers", getAllOffers)
@@ -29,6 +30,7 @@ appRouter.get("/api/users/subGroupList", getSubGroupList)
 appRouter.get("/api/users/getoffersbylimit", getOffersByLimit)
 appRouter.get("/api/users/serpapi/:id", getSerpApi)
 appRouter.get("/api/users/getAllJobPostMV", getAllJobPostMV)
+appRouter.get("/api/users/getEventRegCountMV", getEventRegCountMV)
 appRouter.post("/api/users/login", loginUser)
 appRouter.post("/api/users/loginmember", loginMember)
 appRouter.post("/api/users/loginCustomer", loginCustomer)
