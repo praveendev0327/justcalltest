@@ -105,6 +105,19 @@ export const getAllJobPostQuery = async () =>{
   }
 }
 
+export const getEventRegCountMVQuery = async () =>{
+  const QUERY = 'SELECT COUNT(*) AS count FROM mveventregister';
+  try{
+    const client = await pool.getConnection();
+    const result = await client.query(QUERY);
+    // console.log(result[0]);
+    return result[0].count;
+  } catch (error) {
+    console.log("Error occured on getEventRegCountMVQuery");
+    throw error;
+  }
+}
+
 export const findUserById = async (id) =>{
     const QUERY = "SELECT * FROM users WHERE id = ?";
     try{
@@ -552,12 +565,12 @@ export const addMemberQuery = async (email, company, tradeid, activity) =>{
   }
 }
 
-export const createEventRegisterQuery = async (email, company, phone, rollup, food, event) =>{
-  const QUERY = `INSERT INTO mveventregister(email, company, phone, rollup, food, event) VALUES(?,?,?,?,?,?)`;
+export const createEventRegisterQuery = async (name, email, company, phone, rollup, food, event) =>{
+  const QUERY = `INSERT INTO mveventregister( name,email, company, phone, rollup, food, event) VALUES(?,?,?,?,?,?,?)`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [email, company, phone, rollup, food, event]);
+    const result = await client.query(QUERY, [name, email, company, phone, rollup, food, event]);
     console.log(result);
     return result;
   } catch (error) {
