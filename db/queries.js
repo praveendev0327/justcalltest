@@ -110,7 +110,7 @@ export const getEventRegCountMVQuery = async () =>{
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY);
-    console.log(result[0].count);
+    console.log(result[0]);
     return result[0].count;
   } catch (error) {
     console.log("Error occured on getEventRegCountMVQuery");
