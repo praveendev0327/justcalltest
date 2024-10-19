@@ -565,12 +565,12 @@ export const addMemberQuery = async (email, company, tradeid, activity) =>{
   }
 }
 
-export const createEventRegisterQuery = async (name, email, company, phone, rollup, food, event) =>{
-  const QUERY = `INSERT INTO mveventregister( name,email, company, phone, rollup, food, event) VALUES(?,?,?,?,?,?,?)`;
+export const createEventRegisterQuery = async (name, email, company, phone, rollup, food, event , familycount) =>{
+  const QUERY = `INSERT INTO mveventregister( name,email, company, phone, rollup, food, event, familycount) VALUES(?,?,?,?,?,?,?,?)`;
 
   try{
     const client = await pool.getConnection();
-    const result = await client.query(QUERY, [name, email, company, phone, rollup, food, event]);
+    const result = await client.query(QUERY, [name, email, company, phone, rollup, food, event, familycount]);
     console.log(result);
     return result;
   } catch (error) {
