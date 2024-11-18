@@ -475,14 +475,18 @@ export const addUser = async (username, email, password ) =>{
 export const addCouponUser = async (username, phone, coupon, address) => {
   const CHECK_QUERY = `SELECT * FROM couponlist WHERE coupon = ?`;
   const INSERT_QUERY = `INSERT INTO couponuser(username, phone, coupon, address) VALUES(?,?,?,?)`;
-
+  const CHECK_QUERY_User = `SELECT * FROM couponuser WHERE coupon = ?`;
   try {
       const client = await pool.getConnection();
       
       // Check if the user already exists
       const [existingUsers] = await client.query(CHECK_QUERY, [coupon]);
       if (existingUsers.length > 0) {
-          console.log("Coupon already exists");
+        const [existingUsersCoupon] = await client.query(CHECK_QUERY_User, [coupon]);
+        if (existingUsersCoupon.length > 0) {
+          console.log("Coupon already exists", result);
+          return { message: "Coupon already exists", status: "exists", result };
+        }
           const [result] = await client.query(INSERT_QUERY, [username, phone, coupon, address]);
           console.log("User added successfully:", result);
           return { message: "User added successfully", status: "added", result };
