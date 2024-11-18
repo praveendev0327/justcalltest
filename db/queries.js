@@ -484,8 +484,8 @@ export const addCouponUser = async (username, phone, coupon, address) => {
       if (existingUsers.length > 0) {
         const [existingUsersCoupon] = await client.query(CHECK_QUERY_User, [coupon]);
         if (existingUsersCoupon.length > 0) {
-          console.log("Coupon already exists", result);
-          return { message: "Coupon already exists", status: "exists", result };
+          console.log("Coupon already exists");
+          return { message: "Coupon already exists", status: "exists" };
         }
           const [result] = await client.query(INSERT_QUERY, [username, phone, coupon, address]);
           console.log("User added successfully:", result);
