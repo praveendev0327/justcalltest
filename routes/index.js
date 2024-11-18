@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById, createEventRegisterMV, getEventRegCountMV } from "../handlers/index.js";
+import { getAllUsers, createUser, getUserById, getSerpApi, createProduct, createItemPurchase, loginUser, getSubGroupList, getAllSubGroupList, updateProduct, updateImage, addOffers, getAllOffers, updateOffers, getOffersByLimit, createProfileMV, getProfileById, getProfileByWork, createBannersMV, getProfileByEmail, createJobPostMV, createCvMV, getJobPostByEmail,  deleteOfferById, getCvByEmail, createMemberMV, loginMember, getAllJobPostMV, createDeliveryList, getAllDeliverylist, updateDeliveryStatus, updateDeliveryAppToken, getDeliveryAppToken, registerCustomer, loginCustomer, updateAccountStatus, getAllSections, addNewSections, addSectionProducts, updateSections, updateSectionProducts, getAllSectionProducts, deleteSectionById, deleteSectionProductById, getSectionProductsById, getDeliveryById, createEventRegisterMV, getEventRegCountMV, createCouponUser } from "../handlers/index.js";
 
 import multer from "multer";
 import path from "path";
@@ -40,6 +40,7 @@ appRouter.post("/api/users/getjobpostbyemail", getJobPostByEmail)
 appRouter.post("/api/users/getcvbyemail", getCvByEmail)
 appRouter.post("/api/users/getprofilebywork", getProfileByWork)
 appRouter.post("/api/users/create", createUser)
+appRouter.post("/api/users/createCouponUser", createCouponUser)
 appRouter.post("/api/users/registerCustomer", registerCustomer)
 appRouter.post("/api/users/createDelivery", createDeliveryList)
 appRouter.post("/api/users/createBannersMV", createBannersMV)
