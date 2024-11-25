@@ -330,11 +330,11 @@ export const updateProduct = async (req, res) => {
 };
 
 export const updateImage = async (req, res) => {
-  const {img, barcode } = req.body;
+  const {Name, Price,img, barcode } = req.body;
   // const img = req.file.filename;
   // console.log("barcode",img);
   try {
-    const data = await updateProductImage(img, barcode);
+    const data = await updateProductImage(Name, Price, img, barcode);
     // console.log(data);
     return res.status(200).json({ data });
     
