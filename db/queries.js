@@ -361,7 +361,8 @@ export const updateProductQuery = async (img, barcode ) =>{
 
 export const updateProductImage = async (Name, Price, img, barcode ) =>{
   // const QUERY = `UPDATE MainGroup SET image = ? WHERE Barcode = ?`;
-  const QUERY = `UPDATE finalproducts SET Product Name = ?, Price 1 = ?, image = ? WHERE Barcode = ?`;
+  // const QUERY = `UPDATE finalproducts SET Product Name = ?, Price 1 = ?, image = ? WHERE Barcode = ?`;
+  const QUERY = `UPDATE finalproducts SET \`Product Name\` = ?, \`Price 1\` = ?, \`image\` = ? WHERE \`Barcode\` = ?`;
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [Name, Price, img, barcode]);
