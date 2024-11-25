@@ -366,7 +366,7 @@ export const updateProductImage = async (Name, Price, img, barcode ) =>{
   try{
     const client = await pool.getConnection();
     const result = await client.query(QUERY, [Name, Price, img, barcode]);
-    console.log(result[0]);
+    // console.log(result[0]);
     return result[0];
   } catch (error) {
     console.log("Error occured on updateProductImage");
